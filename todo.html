@@ -61,15 +61,15 @@
         <br>
 
         <div class="inputBox">
-            <input class="name" type="text" placeholder="name ...">
-            <input class="item" type="text" placeholder="type anything welcomed ...">
-            <button>Add</button>
+            <input class="name" type="text" placeholder="name ..." v-model="name">
+            <input class="item" type="text" placeholder="type anything welcomed ..." v-model="newTodoItem">
+            <button v-on:click="add_todo()">Add</button>
         </div>
     
         <ul class="todoList">
-            <li v-for="todo in todoItems">
+            <li v-for="(todo, index) in todoItems">
                 <span>{{ todo.name}}:: {{ todo.item }}</span>
-                <span class="removeBtn">&#x00D7</span>
+                <span class="removeBtn" v-on:click="remove_todo(index)">&#x00D7</span>
             </li>
         </ul>
 
@@ -80,13 +80,24 @@
         var vm = new Vue({
             el: '#app',
             data: {
+                name: '',
+                newTodoItem: '',
                 todoItems:[
                     {name: 'John Cena', item: 'Never Give Up'},
                     {name: 'CM Punk', item: 'Straight Edge'},
                     {name: 'The Undertaker', item: 'Rest In Peace'}
                 ],
             },
-            methods: {},
+            methods: {
+                add_todo: function() {
+                    console.log("add_todo()...");
+                    this.todoItems.push({name: this.name, item: this.newTodoItem});
+                },
+                remove_todo: function(index) {
+                    console.log("remove_todo()...");
+                    this.todoItems.splice(index, 1);
+                }
+            },
         })
     </script>
 
