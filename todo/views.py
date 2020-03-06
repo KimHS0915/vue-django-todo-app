@@ -11,7 +11,7 @@ class TodoVueOnlyTV(TemplateView):
 
 class TodoCV(CreateView):
     model = Todo
-    fileds = '__all__'
+    fields = '__all__'
     template_name = 'todo/todo_form.html'
     success_url = reverse_lazy('todo:list')
     
