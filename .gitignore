@@ -186,4 +186,7 @@ node_modules/
 npm-debug.log
 yarn-error.log
 
+### vscode
+.vscode/
+
 # End of https://www.gitignore.io/api/venv,vuejs,django,python
