@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}ToDo App - Home{% endblock %}
+
+{% block extra-style %}
+
+<style type="text/css">
+.home-window {
+    background-image: url("{% static 'img/todo.jpg' %}");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+    height: 500px;
+    padding: 20px 0 0 20px;
+}
+.title {
+    color: yellowgreen;
+    font-weight: bold;
+    font-style: italic;
+    text-align: center;
+}
+</style>
+
+{% endblock extra-style %}
+
+{% block content %}
+    <div class="home-window">
+        <h1 class="title">To do list</h1>
+    </div>
+{% endblock content %}

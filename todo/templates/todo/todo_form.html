@@ -1,10 +1,8 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vue ToDo App</title>
+{% extends 'base.html' %}
 
+{% block title %}ToDo App - Django Only{% endblock %}
+
+{% block extra-style %}
     <style>
         body {
             text-align: center;
@@ -21,8 +19,9 @@
         .inputBox .name {
             border-style: none;
             border-bottom: 1px solid #ddd;
-            width: 70px;
+            width: 100px;
             padding-left: 20px;
+            line-height: 20px;
         }
         .inputBox .item {
             border-style: none;
@@ -30,6 +29,7 @@
             width: 400px;
             margin-left: 50px;
             padding-left: 20px;
+            line-height: 20px;
         }
         .todoList {
             list-style: none;
@@ -50,9 +50,9 @@
             font-size: 20px;
         }
     </style>
-</head>
+{% endblock %}
 
-<body>
+{% block content %}
     <div id='app'>
 
         <h1>Todo App</h1>
@@ -61,12 +61,11 @@
         <br>
 
         <form class="inputBox" action="." method="post"> {% csrf_token %}
-            <input class="name" type="text" placeholder="name ..." name="name">
-            <input class="item" type="text" placeholder="type anything welcomed ..." 
+            <input class="name" type="text" placeholder="name" name="name">
+            <input class="item" type="text" placeholder="Write a to do" 
                 name="todo">
-            <button type="submit">Add</button>
+            <button type="submit" class="btn btn-info btn-sm">Add</button>
         </form>
 
     </div>
-</body>
-</html>
+{% endblock %}
