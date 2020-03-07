@@ -49,3 +49,7 @@ class TodoDelV2(DeleteView):
 
     def get(self, request, *args, **kwargs):
         return self.delete(request, *args, **kwargs)
+
+
+class TodoTV(TemplateView):
+    template_name = 'todo/todo_index.html'

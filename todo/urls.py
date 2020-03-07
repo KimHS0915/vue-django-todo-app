@@ -13,4 +13,6 @@ urlpatterns = [
 
     path('mixin/', views.TodoMOMCV.as_view(), name='mixin'),
     path('<int:pk>/delete2/', views.TodoDelV2.as_view(), name='delete2'),
+
+    path('', views.TodoTV.as_view(), name='index')
 ]
