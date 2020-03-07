@@ -45,5 +45,7 @@ class TodoMOMCV(MultipleObjectMixin, CreateView):
 
 class TodoDelV2(DeleteView):
     model = Todo
-    template_name = 'todo/todo_confirm_delete.html'
     success_url = reverse_lazy('todo:mixin')
+
+    def get(self, request, *args, **kwargs):
+        return self.delete(request, *args, **kwargs)
