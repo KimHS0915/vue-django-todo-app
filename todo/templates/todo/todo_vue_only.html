@@ -90,8 +90,8 @@
             },
             methods: {
                 add_todo: function() {
-                    if (this.name == '') this.name = 'Unknown';
                     if (this.newTodoItem == '') return;
+                    if (this.name == '') this.name = 'Unknown';
                     this.todoItems.push({name: this.name, item: this.newTodoItem});
                     this.name = '';
                     this.newTodoItem = '';

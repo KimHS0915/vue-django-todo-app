@@ -107,8 +107,8 @@
                         })
                 },
                 add_todo: function() {
-                    if (this.name == '') this.name = 'Unknown';
                     if (this.todo == '') return;
+                    if (this.name == '') this.name = 'Unknown';
 
                     var vm = this;
                     var postData = {name: this.name, todo: this.todo};
@@ -123,6 +123,7 @@
                     this.todo = '';
                 },
                 remove_todo: function(todo, index) {
+                    if (confirm("Really delete ?") == false) return;
                     
                     var vm = this;
                     axios.delete('/api/todo/' + todo.id + '/delete/')
