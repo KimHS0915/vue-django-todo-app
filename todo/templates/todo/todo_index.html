@@ -73,7 +73,7 @@
         <ul class="todoList">
             <li v-for="(todo, index) in todoList">
                 <span>[[ todo.name ]]:: [[ todo.todo ]]</span>
-                <span class="removeBtn" v-on:click="remove_todo(index)">&#x00D7</span>
+                <span class="removeBtn" v-on:click="remove_todo(todo, index)">&#x00D7</span>
             </li>
         </ul>
 
@@ -82,6 +82,7 @@
 
 {% block extra-script %}
     <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
         var vm = new Vue({ 
             delimiters: ['[[', ']]'],
@@ -91,17 +92,46 @@
                 todo: '',
                 todoList:[],
             },
+            created: function () {
+                this.fetch_all_todo();
+            },
             methods: {
+                fetch_all_todo: function () {
+
+                    var vm = this;
+                    axios.get('/api/todo/list')
+                        .then(function (res) {
+                            vm.todoList = res.data;
+                        })
+                        .catch(function (err) {
+                        })
+                },
                 add_todo: function() {
                     if (this.name == '') this.name = 'Unknown';
                     if (this.todo == '') return;
-                    this.todoList.push({name: this.name, todo: this.todo});
+
+                    var vm = this;
+                    var postData = {name: this.name, todo: this.todo};
+                    axios.post('/api/todo/create/', postData)
+                        .then(function (res) {
+                            vm.todoList.push({id: res.data.id, name: res.data.name, todo: res.data.todo});
+                        })
+                        .catch(function (err) {
+                        })
+                    
                     this.name = '';
                     this.todo = '';
                 },
-                remove_todo: function(index) {
-                    this.todoList.splice(index, 1);
-                }
+                remove_todo: function(todo, index) {
+                    
+                    var vm = this;
+                    axios.delete('/api/todo/' + todo.id + '/delete/')
+                        .then(function (res) {
+                            vm.todoList.splice(index, 1);
+                        })
+                        .catch(function (err) {
+                        })
+                },
             },
         })
     </script>

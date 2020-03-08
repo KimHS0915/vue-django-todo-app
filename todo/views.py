@@ -14,7 +14,7 @@ class TodoCV(CreateView):
     model = Todo
     fields = '__all__'
     template_name = 'todo/todo_form.html'
-    success_url = reverse_lazy('todo:list')
+    success_url = reverse_lazy('todo:dlist')
     
 
 class TodoLV(ListView):
@@ -25,7 +25,7 @@ class TodoLV(ListView):
 class TodoDelV(DeleteView):
     model = Todo
     template_name = 'todo/todo_confirm_delete.html'
-    success_url = reverse_lazy('todo:list')
+    success_url = reverse_lazy('todo:dlist')
 
 
 class TodoMOMCV(MultipleObjectMixin, CreateView):
