@@ -61,7 +61,7 @@
                     <i class="fas fa-user"></i>&nbsp; Anonymous &nbsp;</a>
                 <div class="dropdown-menu">
                     {% if user.is_active %}
-                    {{ user.username }}
+                    <div class="dropdown-item">{{ user.username }}</div>
                     <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
                     {% else %}
                     <a class="dropdown-item" href="{% url 'login' %}">Login</a>
